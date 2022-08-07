@@ -1,7 +1,5 @@
 import React from "react";
-import styled from "styled-components/native";
 import { Text } from "../../../components/typography/text.component";
-import { Card } from "react-native-paper";
 import { SvgXml } from "react-native-svg";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import {
@@ -28,6 +26,7 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
     isOpenNow = true,
     rating = 4,
     isClosedTemporarily = true,
+    placeId,
   } = restaurant;
 
   const ratingArray = Array.from(new Array(Math.floor(rating)));
@@ -40,7 +39,12 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
         <Section>
           <Rating>
             {ratingArray.map((_, index) => (
-              <SvgXml xml={star} width={20} height={20} key={`star${index}`} />
+              <SvgXml
+                xml={star}
+                width={20}
+                height={20}
+                key={`star-${placeId}-${index}`}
+              />
             ))}
             <SectionEnd>
               {isClosedTemporarily ? (
